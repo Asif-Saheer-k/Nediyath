@@ -1,0 +1,242 @@
+<div class="s-layout">
+  <!-- Sidebar -->
+  <div class="s-layout__sidebar">
+    <a class="s-sidebar__trigger" href="#0">
+      <i class="fa fa-bars"></i>
+    </a>
+
+    <nav class="s-sidebar__nav">
+      <ul
+        style="display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;"
+      >
+        <div>
+          <li>
+            <a class="s-sidebar__nav-link" href="/admin">
+              <i class="fa fa-home"></i><em>Product</em>
+            </a>
+          </li>
+          <li>
+            <a class="s-sidebar__nav-link" href="/admin/gallery">
+              <i class="fa fa-user"></i><em>Gallery</em>
+            </a>
+          </li>
+        </div>
+        <div>
+          <li>
+            <a class="s-sidebar__nav-link" href="/admin/admin-logout">
+              <i class="fa fa-user"></i><em>Logout</em>
+            </a>
+          </li>
+        </div>
+        {{! <li>
+           <a class="s-sidebar__nav-link" href="#0">
+              <i class="fa fa-camera"></i><em>Camera</em>
+           </a>
+        </li> }}
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Content -->
+  <main class="s-layout__content" style="padding:30px ;">
+    <div class="wrapper">
+      <a
+        href="#demo-modal"
+        class="btn btn-1 ms-3 mt-5 mb-3"
+        style="float: right;"
+      >Add Product</a>
+    </div>
+
+    <div id="demo-modal" class="modal">
+      <div class="modal__content">
+        <form
+          id="contact"
+          action="/admin/add-product"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="text-center"><h3>ADD PRODUCT</h3></div>
+          <fieldset>
+            <input
+              name="name"
+              class="form-control"
+              placeholder="name"
+              type="text"
+              required
+              autofocus
+            />
+          </fieldset>
+          <fieldset>
+            <input
+              name="price"
+              class="form-control"
+              placeholder="Enter Product Price"
+              type="text"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <input
+              name="image"
+              class="form-control"
+              placeholder="Enter Product Price"
+              type="file"
+              required
+            />
+          </fieldset>
+          <fieldset>
+            <textarea
+              class="form-control"
+              name="discription"
+              placeholder="Type  Discription here...."
+              required
+            ></textarea>
+          </fieldset>
+                    <fieldset>
+  <select  name="category" id="cars" class="form-control">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+  </select>
+          </fieldset>
+          <fieldset>
+            <button
+              type="submit"
+              id="contact-submit"
+              data-submit="...Sending"
+            >Submit</button>
+          </fieldset>
+        </form>
+        <a href="#" class="modal__close">&times;</a>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">IMAGE</th>
+          <th scope="col">PRODUCT NAME</th>
+          <th scope="col">PRICE</th>
+          <th scope="col">DESCRIPTION</th>
+          <th scope="col">ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each product}}
+          <tr>
+            <td data-label="image"><img
+                style="width: 50px; hieght: 50px;"
+                src="/product-images/{{this._id}}.jpg"
+                alt=""
+              /></td>
+            <td data-label="name">{{this.name}}</td>
+            <td data-label="Amount">{{this.price}}</td>
+            <td data-label="description">{{this.discription}}</td>
+            <td data-label="Delete">
+              <a
+                href="/admin/delete-product/{{this._id}}"
+               class="text-danger"
+                onclick="return confirm('Are You Want to Delete {{this.name}}?')"
+              ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg></i></a></td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </main> 
+</div>
+<style>
+  /* Primary Styles */ *, *::before, *::after { box-sizing: border-box; } body {
+  font-family: sans-serif; font-size: 1em; color: #333; } h1 { font-size: 1.4em;
+  } em { font-style: normal; } a { text-decoration: none; color: inherit; } /*
+  Layout */ .s-layout { display: flex; width: 100%; min-height: 100vh; }
+  .s-layout__content { margin-top: 3%; justify-content: center; align-items:
+  center; flex: 1; } /* Sidebar */ .s-sidebar__trigger { z-index: 2; position:
+  fixed; top: 0; left: 0; width: 100%; height: 4em; background: #192b3c; }
+  .s-sidebar__trigger > i { display: inline-block; margin: 1.5em 0 0 1.5em;
+  color: #f07ab0; } .s-sidebar__nav { position: fixed; top: 0; left: -15em;
+  overflow: hidden; transition: all .3s ease-in; width: 15em; height: 100%;
+  background: #243e56; color: rgba(255, 255, 255, 0.7); } .s-sidebar__nav:hover,
+  .s-sidebar__nav:focus, .s-sidebar__trigger:focus + .s-sidebar__nav,
+  .s-sidebar__trigger:hover + .s-sidebar__nav { left: 0; } .s-sidebar__nav ul {
+  position: absolute; top: 4em; left: 0; margin: 0; padding: 0; width: 15em; }
+  .s-sidebar__nav ul li { width: 100%; } .s-sidebar__nav-link { position:
+  relative; display: inline-block; width: 100%; height: 4em; }
+  .s-sidebar__nav-link em { position: absolute; top: 50%; left: 4em; transform:
+  translateY(-50%); } .s-sidebar__nav-link:hover { background: #4d6276; }
+  .s-sidebar__nav-link > i { position: absolute; top: 0; left: 0; display:
+  inline-block; width: 4em; height: 4em; } .s-sidebar__nav-link > i::before {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  /* Mobile First */ @media (min-width: 42em) { .s-layout__content {
+  margin-left: 4em; } /* Sidebar */ .s-sidebar__trigger { width: 4em; }
+  .s-sidebar__nav { width: 4em; left: 0; } .s-sidebar__nav:hover,
+  .s-sidebar__nav:focus, .s-sidebar__trigger:hover + .s-sidebar__nav,
+  .s-sidebar__trigger:focus + .s-sidebar__nav { width: 15em; } } @media
+  (min-width: 68em) { .s-layout__content { margin-left: 15em; } /* Sidebar */
+  .s-sidebar__trigger { display: none } .s-sidebar__nav { width: 15em; }
+  .s-sidebar__nav ul { top: 1.3em; } } table { border: 1px solid #ccc;
+  border-collapse: collapse; margin: 0; padding: 0; width: 100%; table-layout:
+  fixed; } table caption { font-size: 1.5em; margin: .5em 0 .75em; } table tr {
+  background-color: #f8f8f8; border: 1px solid #ddd; padding: .35em; } table th,
+  table td { padding: .625em; text-align: center; } table th { font-size: .85em;
+  letter-spacing: .1em; text-transform: uppercase; } @media screen and
+  (max-width: 600px) { table { border: 0; } table caption { font-size: 1.3em; }
+  table thead { border: none; clip: rect(0 0 0 0); height: 1px; margin: -1px;
+  overflow: hidden; padding: 0; position: absolute; width: 1px; } table tr {
+  border-bottom: 3px solid #ddd; display: block; margin-bottom: .625em; } table
+  td { border-bottom: 1px solid #ddd; display: block; font-size: .8em;
+  text-align: right; } table td::before { /* * aria-label has no advantage, it
+  won't be read inside a table content: attr(aria-label); */ content:
+  attr(data-label); float: left; font-weight: bold; text-transform: uppercase; }
+  table td:last-child { border-bottom: 0; } } /* general styling */ body {
+  font-family: "Open Sans", sans-serif; line-height: 1.25; } .wrapper a {
+  display: inline-block; color: #585858; font-family: 'Roboto', sans-serif; }
+  .modal { visibility: hidden; opacity: 0; position: absolute; top: 0; right: 0;
+  bottom: 0; left: 0; display: flex; align-items: center; justify-content:
+  center; background: rgba(77, 77, 77, .7); transition: all .4s; } .modal:target
+  { visibility: visible; opacity: 1; } .modal__content { border-radius: 4px;
+  position: relative; width: 500px; max-width: 90%; background: #fff}
+  .modal__footer { text-align: right; a { color: #585858; } i { color: #d02d2c;
+  } } .modal__close { position: absolute; top: 10px; right: 10px; color:
+  #585858; text-decoration: none; } #contact input[type="text"], #contact
+  input[type="email"], #contact input[type="tel"], #contact input[type="url"],
+  #contact textarea, #contact button[type="submit"] { font: 400 12px/16px
+  "Roboto", Helvetica, Arial, sans-serif; } #contact { background:
+  #F9F9F9;padding: 10px; } #contact h3 { display: block; font-size: 30px;
+  font-weight: 300; margin-bottom: 10px; } #contact h4 { margin: 5px 0 15px;
+  display: block; font-size: 13px; font-weight: 400; } fieldset { border: medium
+  none !important; margin: 0 0 10px; min-width: 100%; padding: 0; width: 100%; }
+  #contact input[type="text"], #contact input[type="email"], #contact
+  input[type="tel"], #contact input[type="url"], #contact textarea { width:
+  100%; border: 1px solid #ccc; background: #FFF; margin: 0 0 5px; padding:
+  10px; } #contact input[type="text"]:hover, #contact input[type="email"]:hover,
+  #contact input[type="tel"]:hover, #contact input[type="url"]:hover, #contact
+  textarea:hover { -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out; transition: border-color 0.3s
+  ease-in-out; border: 1px solid #aaa; } #contact textarea { height: 100px;
+  max-width: 100%; resize: none; } #contact button[type="submit"] { cursor:
+  pointer; width: 100%; border: none; background: #4CAF50; color: #FFF; margin:
+  0 0 5px; padding: 10px; font-size: 15px; } #contact
+  button[type="submit"]:hover { background: #43A047; -webkit-transition:"
+  background 0.3s ease-in-out"; -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out; } #contact
+  button[type="submit"]:active { box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+  } .copyright { text-align: center; } #contact input:focus, #contact
+  textarea:focus { outline: 0; border: 1px solid #aaa; }
+  ::-webkit-input-placeholder { color: #888; } :-moz-placeholder { color: #888;
+  } ::-moz-placeholder { color: #888; } :-ms-input-placeholder { color: #888; }
+  .btn { flex: 1 1 auto; margin: 10px; border-left: none; padding: 10px;
+  text-align: center; text-transform: uppercase; transition: 0.5s;
+  background-size: 200% auto; color: white; /* text-shadow: 0px 0px 10px
+  rgba(0,0,0,0.2);*/ border-radius: 10px; } /* Demo Stuff End -> */ /* <- Magic
+  Stuff Start */ .btn:hover { background-position: right center; /* change the
+  direction of the change here */ } .btn-1 { background-image:
+  linear-gradient(to right, #efebde 0%, #c5c2f0 51%, #a8a188 100%); }
+
+</style>
+
