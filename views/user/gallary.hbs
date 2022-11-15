@@ -161,16 +161,18 @@
                         <div class="project-filter-wrapper">
                             <ul class="project_filters">
                                 <li><a href="#" data-filter="*" class="selected btn-details">All<span class="filter-count"></span></a></li>
-                                <li><a class="btn-details" href="#" data-filter=".category-14">Architecture<span class="filter-count"></span></a></li>         
-                                <li><a class="btn-details" href="#" data-filter=".category-15">Decor<span class="filter-count"></span></a></li>
-                                <li><a class="btn-details" href="#" data-filter=".category-20">Furniture<span class="filter-count"></span></a></li>
-                                <li><a class="btn-details" href="#" data-filter=".category-19">Interior<span class="filter-count"></span></a></li>
+                                 <li><a class="btn-details" href="#" data-filter=".FaucetsShowers">Faucets&Showers<span class="filter-count"></span></a></li>
+                                <li><a class="btn-details" href="#" data-filter=".Sanitaryware">Sanitaryware<span class="filter-count"></span></a></li>
+                                <li><a class="btn-details" href="#" data-filter=".Closet">Closet<span class="filter-count"></span></a></li>
+                                <li><a class="btn-details" href="#" data-filter=".WaterTanks">Water Tanks<span class="filter-count"></span></a></li>
+                                 <li><a class="btn-details" href="#" data-filter=".WaterTanks"> Kitchen Items&Stores<span class="filter-count"></span></a></li>
+                                <li><a class="btn-details" href="#" data-filter=".Chimney">Chimney<span class="filter-count"></span></a></li>
                             </ul>
                             <div class="projects-grid pf_3_cols style-1 img-scale w-auto">
                                 <div class="grid-sizer"></div>
                                 
                             {{#each products}}
-                                <div class="project-item category-19 ">
+                                <div class="project-item {{this.category}}">
                                     <div class="projects-box">
                                         <div class="projects-thumbnail">
                                             <a href="portfolio-standar.html">

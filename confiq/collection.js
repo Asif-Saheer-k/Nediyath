@@ -1,10 +1,5 @@
 module.exports={
     PRODUCT_COLLECTION:'product',
     GALLERY_COLLECTION:'gallery',
-    PRODUCT_CATEGORY:'category',
-    CART_COLLECTION:'cart',
-    ORDER_COLLECTION:'order',
-    WISHILIST_COLLECTION:'wishilist',
-    BANNER_COLLECTION:'banner',
-    COUPON_COLLECTION:'coupon'
+
 }
